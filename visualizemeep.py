@@ -21,7 +21,7 @@ def plot3D(sim,xrange:list=None,yrange:list=None,zrange:list=None,alpha=1):
 
     eps_data = sim.get_epsilon_grid(xtics, ytics, ztics) #get epsilon
     coordinate = np.mgrid[0:eps_data.shape[0],0:eps_data.shape[1],0:eps_data.shape[2]] #define coordinate
-    view = {'x':coordinate[0].flatten(),'y':coordinate[1].flatten(),'z':coordinate[2].flatten(),'epsilon':np.real(eps_data.flatten())} #define a 3D 'picture'
+    view = {'x':coordinate[0].flatten()/sim.resolution,'y':coordinate[1].flatten()/sim.resolution,'z':coordinate[2].flatten()/sim.resolution,'epsilon':np.real(eps_data.flatten())} #define a 3D 'picture'
     
     #plot
     fig = px.scatter_3d(pd.DataFrame(view),x='x', y='y', z='z',
