@@ -3,15 +3,8 @@ import meep as mp
 from meep import mpb
 import matplotlib.pyplot as plt
 import sys
-
-def log_file(fuct,out_file='./temp.log'):
-    current = sys.stdout
-    f = open(out_file, 'w+')
-    sys.stdout = f
-    fuct
-    sys.stdout = current
     
-def tri_rods_bands(out_file,a=50,k=0.25,num_bands=8):
+def tri_rods_bands(out_file,a=50,k=0.25,num_bands=8,resolution=32):
     k_points = [mp.Vector3(),          # Gamma
                 mp.Vector3(y=0.5),       # M
                 mp.Vector3(-1/3, 1/3),  # K
@@ -24,7 +17,7 @@ def tri_rods_bands(out_file,a=50,k=0.25,num_bands=8):
                                 basis3=mp.Vector3(0,0,1),
                                 basis_size=mp.Vector3(a, a, a),size=mp.Vector3(1, 1))
 
-    resolution = 32
+    resolution = resolution
     ms = mpb.ModeSolver(num_bands=num_bands,
                         k_points=k_points,
                         geometry=geometry,
