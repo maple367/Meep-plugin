@@ -11,7 +11,7 @@ def log_file(fuct,out_file='./temp.log'):
     fuct
     sys.stdout = current
     
-def tri_rods(out_file,a=50,k=0.25,num_bands=8):
+def tri_rods_bands(out_file,a=50,k=0.25,num_bands=8):
     k_points = [mp.Vector3(),          # Gamma
                 mp.Vector3(y=0.5),       # M
                 mp.Vector3(-1/3, 1/3),  # K
