@@ -18,7 +18,7 @@ def grep(file: str, pattern: str) -> str:
     return(data_frame)
 
 
-def bands_plot(data,num_bands:int,kpoints:list[str]=None,a=1):
+def bands_plot(data,num_bands:int,kpoints:list[str]=None):
     data = pd.read_csv(data)
     data = data.T
     x = range(len(data.iloc[1]))
@@ -27,8 +27,9 @@ def bands_plot(data,num_bands:int,kpoints:list[str]=None,a=1):
         plt.plot(x,data.iloc[_+6].astype(np.float64))
     if kpoints != None:
         points_in_between = (len(data.iloc[1])-len(kpoints))/(len(kpoints)-1)
-        tick_locs = [i*points_in_between+i for i in range(4)]
+        tick_locs = [i*points_in_between+i for i in range(len(kpoints))]
         plt.xticks(tick_locs,kpoints, size=16)
         plt.xlim([x[0], x[-1]])
         plt.ylabel('frequency (c/a)', size=16)
+    return(data)
     #plt.show()
